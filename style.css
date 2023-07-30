@@ -1,0 +1,33 @@
+body {
+    display: flex;
+    justify-content: center;
+    padding: 0px;
+    margin: 50px;
+}
+
+.container {
+    display: flex;
+    width: 30vw;
+    height: 80vh;
+    border: 2px solid red;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.display, .buttons {
+    border: 2px solid lime;
+}
+
+.display {
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons {
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
