@@ -2,7 +2,7 @@ body {
     padding: 0px;
     margin: 0px;
     font-size: 3rem;
-    background: #ccc;
+    background: #aaa;
     box-sizing: border-box;
 }
 
@@ -11,12 +11,11 @@ body {
     flex-wrap: wrap;
     width: 40%;
     justify-content: center;
-    margin: 2em auto;
-    border: 2px solid red;
+    margin: 1em auto;
+    border: 0.5rem solid black;
 }
 
 .display, .buttons {
-    border: 2px solid limegreen;
     display: flex;
     width: 100%;
     align-items: center;   
@@ -27,6 +26,8 @@ body {
     justify-content: flex-end;
     padding-right: 1em;
     font-size: 2.5rem;
+    background: #ddd;
+    border-bottom: 0.5rem solid black;
 }
 
 .buttons {
@@ -35,10 +36,11 @@ body {
     justify-content: center;
     font-weight: bold;  
     gap: 1rem;
+    background: #444;
 }
 
 button {
     padding: 1rem;
-    width: 30%;
-    font-size: 2.5rem;
+    flex: 20%;
+    font-size: 3rem;
 }
