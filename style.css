@@ -1,7 +1,7 @@
 body {
     padding: 0px;
     margin: 0px;
-    font-size: 3rem;
+    font-size: 3em;
     background: #aaa;
     box-sizing: border-box;
 }
@@ -9,10 +9,12 @@ body {
 .container {
     display: flex;
     flex-wrap: wrap;
-    width: 40%;
+    width: 500px;
     justify-content: center;
+    align-items: center;
     margin: 1em auto;
-    border: 0.5rem solid black;
+    border: 0.75rem solid black;
+    box-sizing: border-box;
 }
 
 .display, .buttons {
@@ -24,23 +26,27 @@ body {
 .display {
     height: 3em;
     justify-content: flex-end;
-    padding-right: 1em;
-    font-size: 2.5rem;
+    padding-right: 0.5em;
+    font-size: 2rem;
     background: #ddd;
-    border-bottom: 0.5rem solid black;
+    box-sizing: border-box;
+    border: 1rem solid black;
+    font-family: sans-serif;
+
 }
 
 .buttons {
-    padding: 1rem;
+    padding: 1.33rem;
     flex-wrap: wrap;
     justify-content: center;
     font-weight: bold;  
-    gap: 1rem;
+    gap: 0.5rem;
     background: #444;
+    height: 9em;
 }
 
 button {
     padding: 1rem;
     flex: 20%;
-    font-size: 3rem;
+    font-size: 2rem;
 }
