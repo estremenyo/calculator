@@ -1,33 +1,44 @@
 body {
-    display: flex;
-    justify-content: center;
     padding: 0px;
-    margin: 50px;
+    margin: 0px;
+    font-size: 3rem;
+    background: #ccc;
+    box-sizing: border-box;
 }
 
 .container {
     display: flex;
-    width: 30vw;
-    height: 80vh;
-    border: 2px solid red;
     flex-wrap: wrap;
-    flex-direction: column;
+    width: 40%;
+    justify-content: center;
+    margin: 2em auto;
+    border: 2px solid red;
 }
 
 .display, .buttons {
-    border: 2px solid lime;
+    border: 2px solid limegreen;
+    display: flex;
+    width: 100%;
+    align-items: center;   
 }
 
 .display {
-    height: 30vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 3em;
+    justify-content: flex-end;
+    padding-right: 1em;
+    font-size: 2.5rem;
 }
 
 .buttons {
-    height: 50vh;
-    display: flex;
+    padding: 1rem;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    font-weight: bold;  
+    gap: 1rem;
+}
+
+button {
+    padding: 1rem;
+    width: 30%;
+    font-size: 2.5rem;
 }
