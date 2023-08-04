@@ -3,6 +3,7 @@ let operator = "";
 let num2 = "";
 let display = document.querySelector(".display");
 let showingHello = true;
+let decimalExists = false;
 
 document.querySelectorAll("button").forEach(button => 
     button.addEventListener("click", clearInitial));
@@ -47,6 +48,7 @@ function removeFromDisplay(e) {
         num1 = "";
         num2 = "";
         operator = "";
+        decimalExists = false;
 
 }
 
@@ -57,10 +59,14 @@ function clearInitial() {
     num1 = "";
     num2 = "";
     operator = "";
+    decimalExists = false;
     }
 }
 
 function updateDisplay(e) {
+    if (e.target.textContent == "." && decimalExists == false) {
+        decimalExists = true;
+    } else return;
     display.textContent += e.target.textContent;
 }
 
@@ -87,15 +93,17 @@ function evaluateDisplay() {
             num2 = "";
             operator = display.textContent[i];
         }
-        // If the user is trying to divide by zero, display an error
-        if (operator == "/" && num2 == "0") {
+        // Check if the user is dividing by zero
+        // TODO: If num2 is '0' w/o a fraction, run the conditional
+        // But if num2 is 0 w/ a fraction e.g. '0.7', don't run it
+        if (operator == "/" && num2 == "0" && !Number.isInteger(num2)) {
             display.textContent = "ERROR!";
             showingHello = true;
             return;
         }    
     }
     // If the user is trying to divide or multiply by nothing, set it to 1
-    if ((operator == "/" || operator == "*") && num2 == "") {
+    if ((operator == "/" || operator == "*") && (num2 == "" || num2 == ".")) {
         num2 = 1;
     }    
 
