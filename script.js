@@ -54,6 +54,9 @@ function clearInitial() {
     if (showingHello == true) {
     display.textContent = "";
     showingHello = false;
+    num1 = "";
+    num2 = "";
+    operator = "";
     }
 }
 
@@ -65,40 +68,46 @@ function evaluateDisplay() {
     let recordingSecond = false;
     // Loop over the user input
     for (i = 0; i < display.textContent.length; i++) {
+        // Record the first number
         if (checkNum(display.textContent[i]) && recordingSecond == false) {
             num1 += display.textContent[i];
-        } else if (!checkNum(display.textContent[i])) {
+        // Record the operator
+        } else if (!checkNum(display.textContent[i]) && recordingSecond == false) {
             operator = display.textContent[i];
             recordingSecond = true;
+        // Record the second number
         } else if (checkNum(display.textContent[i]) && recordingSecond == true) {
             num2 += display.textContent[i];
         }
-    
+        // If we are already recording the second number but see another operator,
+        // we need to operate on our current numbers before moving on to the next
+        else if (!checkNum(display.textContent[i]) && recordingSecond == true) {
+            // TODO
+            num1 = operate(num1, operator, num2);
+            num2 = "";
+            operator = display.textContent[i];
+        }
+        // If the user is trying to divide by zero, display an error
+        if (operator == "/" && num2 == "0") {
+            display.textContent = "ERROR!";
+            showingHello = true;
+            return;
+        }    
     }
+    // If the user is trying to divide or multiply by nothing, set it to 1
+    if ((operator == "/" || operator == "*") && num2 == "") {
+        num2 = 1;
+    }    
 
-    // If the user did not input all of the required parameters, 
-    // or is trying to divide by zero, display an error
-    if (operator === "" || num2 === "" || (operator === "/" && num2 == "0")) {
-        display.textContent = "ERROR!";
-        showingHello = true;
-        num1 = "";
-        num2 = "";
-        num3 = "";
-        return;
-    }
-
-    let num3 = operate(num1, operator, num2);
+    // Operate on our variables the only or last time
+    num1 = operate(num1, operator, num2);
 
     // Round decimals to 5 places if the output has a decimal longer than that
-    num3 = checkDecimal(num3);
-    display.textContent = num3;
-    console.log(num1);
-    console.log(num3);
-
-    num1 = "";
-    operator = "";
-    num2 = "";
+    num1 = checkDecimal(num1);
+    display.textContent = num1;
+    showingHello = true;
 }
+
 
 function checkNum(char) {
     // If a number or decimal point, return true
@@ -113,8 +122,8 @@ function checkDecimal(num) {
     if (index == -1) return num;
     else {
         decimalPart = num.toString().substring(index + 1);
-        if (decimalPart.length > 8) {
-            return num.toFixed(8)
+        if (decimalPart.length > 5) {
+            return num.toFixed(5)
         } else return num;
 
     }
