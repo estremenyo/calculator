@@ -64,10 +64,12 @@ function clearInitial() {
 }
 
 function updateDisplay(e) {
-    if (e.target.textContent == "." && decimalExists == false) {
+    if (e.target.textContent != ".") {
+        display.textContent += e.target.textContent;
+    } else if (e.target.textContent == "." && decimalExists == false) {
+        display.textContent += e.target.textContent;
         decimalExists = true;
-    } else return;
-    display.textContent += e.target.textContent;
+    }
 }
 
 function evaluateDisplay() {
@@ -96,7 +98,7 @@ function evaluateDisplay() {
         // Check if the user is dividing by zero
         // TODO: If num2 is '0' w/o a fraction, run the conditional
         // But if num2 is 0 w/ a fraction e.g. '0.7', don't run it
-        if (operator == "/" && num2 == "0" && !Number.isInteger(num2)) {
+        if (operator == "/" && num2 == "0") {
             display.textContent = "ERROR!";
             showingHello = true;
             return;
