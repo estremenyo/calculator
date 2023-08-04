@@ -67,10 +67,15 @@ function evaluateDisplay() {
     for (i = 0; i < display.textContent.length; i++) {
         if (checkNum(display.textContent[i]) && recordingSecond == false) {
             num1 += display.textContent[i];
+        } else if (!checkNum(display.textContent[i])) {
+            operator = display.textContent[i];
+            recordingSecond = true;
+        } else if (checkNum(display.textContent[i]) && recordingSecond == true) {
+            num2 += display.textContent[i];
         }
     
     }
-    num3 = operate(num1, "+", 2);
+    num3 = operate(num1, operator, num2);
     console.log(num1);
     console.log(num3);
     display.textContent = num3;
