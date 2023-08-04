@@ -76,16 +76,22 @@ function evaluateDisplay() {
     
     }
 
-    // If the user did not input all of the required parameters, display an error
-    if (operator === "" || num2 === "") {
+    // If the user did not input all of the required parameters, 
+    // or is trying to divide by zero, display an error
+    if (operator === "" || num2 === "" || (operator === "/" && num2 == "0")) {
         display.textContent = "ERROR!";
         showingHello = true;
         num1 = "";
         num2 = "";
         num3 = "";
+        return;
     }
 
-    num3 = operate(num1, operator, num2);
+    let num3 = operate(num1, operator, num2);
+
+    // Round decimals to 5 places if the output has a decimal longer than that
+    num3 = checkDecimal(num3);
+    display.textContent = num3;
     console.log(num1);
     console.log(num3);
 
@@ -94,10 +100,22 @@ function evaluateDisplay() {
     num2 = "";
 }
 
-    function checkNum(char) {
-        // If a number or decimal, return true
-        if (char >= 0 || char == ".") {
-            return true;
-        } // else is operator, return false
-        else return false;
+function checkNum(char) {
+    // If a number or decimal point, return true
+    if (char >= 0 || char == ".") {
+        return true;
+    } // else is operator, return false
+    else return false;
+}
+
+function checkDecimal(num) {
+    index = num.toString().indexOf(".");
+    if (index == -1) return num;
+    else {
+        decimalPart = num.toString().substring(index + 1);
+        if (decimalPart.length > 8) {
+            return num.toFixed(8)
+        } else return num;
+
     }
+}
