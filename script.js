@@ -75,10 +75,19 @@ function evaluateDisplay() {
         }
     
     }
+
+    // If the user did not input all of the required parameters, display an error
+    if (operator === "" || num2 === "") {
+        display.textContent = "ERROR!";
+        showingHello = true;
+        num1 = "";
+        num2 = "";
+        num3 = "";
+    }
+
     num3 = operate(num1, operator, num2);
     console.log(num1);
     console.log(num3);
-    display.textContent = num3;
 
     num1 = "";
     operator = "";
