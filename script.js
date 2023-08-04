@@ -1,10 +1,19 @@
-let num1, operator, num2;
+let num1 = "";
+let operator = "";
+let num2 = "";
 let display = document.querySelector(".display");
+let showingHello = true;
+
+document.querySelectorAll("button").forEach(button => 
+    button.addEventListener("click", clearInitial, {once: true}));
 
 document.querySelector(".clear").addEventListener("click", removeFromDisplay);
 
-let numberButtons = document.querySelectorAll(".number");
-let operatorButtons = document.querySelectorAll(".operator");
+document.querySelectorAll(".number, .operator").forEach(updateButton => 
+    updateButton.addEventListener("click", updateDisplay));
+
+document.querySelector(".equals").addEventListener("click", evaluateDisplay);
+
 
 
 function add(num1, num2) {
@@ -32,6 +41,24 @@ function operate(num1, operator, num2) {
 
 
 function removeFromDisplay(e) {
-    display.textContent = "";
+        display.textContent = "";
+        num1 = "";
+        num2 = "";
+        operator = "";
+
 }
 
+function clearInitial() {
+    if (showingHello == true) {
+    display.textContent = "";
+    showingHello = false;
+    }
+}
+
+function updateDisplay(e) {
+    display.textContent += e.target.textContent;
+}
+
+function evaluateDisplay() {
+    console.log("yeah");
+}

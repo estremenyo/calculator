@@ -1,7 +1,7 @@
 body {
     padding: 0px;
     margin: 0px;
-    font-size: 3em;
+    font-size: 3rem;
     background: #aaa;
     box-sizing: border-box;
 }
@@ -24,10 +24,10 @@ body {
 }
 
 .display {
-    height: 3em;
+    height: 2em;
     justify-content: flex-end;
-    padding-right: 0.5em;
-    font-size: 2rem;
+    padding-right: 0.25em;
+    font-size: 3.25rem;
     background: #ddd;
     box-sizing: border-box;
     border: 1rem solid black;
@@ -36,7 +36,7 @@ body {
 }
 
 .buttons {
-    padding: 1.33rem;
+    padding: 1rem;
     flex-wrap: wrap;
     justify-content: center;
     font-weight: bold;  
