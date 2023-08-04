@@ -4,6 +4,7 @@ let num2 = "";
 let display = document.querySelector(".display");
 let needToClearScreen = true;
 let decimalExists = false;
+let dividedByZero = false;
 
 document.querySelectorAll("button").forEach(button => 
     button.addEventListener("click", clearInitial));
@@ -14,6 +15,8 @@ document.querySelectorAll(".number, .operator").forEach(updateButton =>
     updateButton.addEventListener("click", updateDisplay));
 
 document.querySelector(".equals").addEventListener("click", evaluateDisplay);
+
+document.querySelector(".backspace").addEventListener("click", deleteFromDisplay);
 
 
 
@@ -43,12 +46,16 @@ function operate(num1, operator, num2) {
 }
 
 
-function removeFromDisplay(e) {
+function removeFromDisplay() {
     display.textContent = "";
     num1 = "";
     num2 = "";
     operator = "";
     decimalExists = false;
+}
+
+function deleteFromDisplay() {
+    display.textContent = display.textContent.slice(0, -1);
 }
 
 function clearInitial() {
@@ -87,12 +94,15 @@ function evaluateDisplay() {
             num2 = "";
             operator = display.textContent[i];
         } 
+        if (operator == "/" && num2 == "0") dividedByZero = true;
     }
 
     num1 = operate(num1, operator, num2);
-    num1 = checkDecimal(num1, 5);
-    if (num1 == Infinity) display.textContent = "ERROR";
-    else display.textContent = num1;
+    if (num1 == Infinity && dividedByZero) display.textContent = "ERROR";
+    else {
+        num1 = checkDecimal(num1, 5);
+        display.textContent = num1;
+    }
     needToClearScreen = true;
 }
 
