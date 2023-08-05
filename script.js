@@ -4,7 +4,6 @@ let num2 = "";
 let display = document.querySelector(".display");
 let needToClearScreen = true;
 let decimalExists = false;
-let dividedByZero = false;
 
 document.querySelectorAll("button").forEach(button => 
     button.addEventListener("click", clearInitial));
@@ -90,20 +89,27 @@ function evaluateDisplay() {
             num2 += display.textContent[i];
         }
         else if (!isNum(display.textContent[i]) && recordingSecond == true) {
+            if (operator == "/" && num2 == "0") {
+                display.textContent = "ERROR";
+                needToClearScreen = true;
+                return;
+            }
             num1 = operate(num1, operator, num2);
             num2 = "";
             operator = display.textContent[i];
         } 
-        if (operator == "/" && num2 == "0") dividedByZero = true;
     }
 
-    num1 = operate(num1, operator, num2);
-    if (num1 == Infinity && dividedByZero) display.textContent = "ERROR";
-    else {
+    if (operator == "/" && num2 == "0") {
+        display.textContent = "ERROR";
+        needToClearScreen = true;
+        return;
+    } else {
+        num1 = operate(num1, operator, num2);
         num1 = checkDecimal(num1, 5);
         display.textContent = num1;
+        needToClearScreen = true;
     }
-    needToClearScreen = true;
 }
 
 

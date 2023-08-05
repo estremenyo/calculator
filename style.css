@@ -54,3 +54,16 @@ button {
 .bigger {
     flex: 30%;
 }
+
+.remover {
+    background: red;
+    color: white;
+}
+
+.equals {
+    background: lightgreen;
+}
+
+.operator {
+    background: yellow;
+}
